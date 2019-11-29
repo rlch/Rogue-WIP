@@ -5,6 +5,9 @@ using UnityEngine.Tilemaps;
 
 public class GenerateRoom : MonoBehaviour
 {
+
+    public Tile testTile;
+
     private Tilemap ground, walls;
     public Tile groundTile, wallTile, doorTile, doorSideTile, wallEndTile;
     public Vector2Int size;
@@ -27,7 +30,6 @@ public class GenerateRoom : MonoBehaviour
 
         // Ensure wall corners are painted irregardless of wall sides.
         walls.SetTile(new Vector3Int(0, 0, 0), wallTile); // BR
-        
         walls.SetTile(new Vector3Int(-size.x, 0, 0), wallTile); // BL
         
         
@@ -45,23 +47,20 @@ public class GenerateRoom : MonoBehaviour
             }
         }
 
-        if (doorSides[0]) // Top
-        {
-            if (wallSides[0]) walls.SetTile(new Vector3Int(-size.x / 2, size.y, 0), doorTile);
-        }
-        if (doorSides[1]) // Bottom
-        {
-            if (wallSides[1]) walls.SetTile(new Vector3Int(-size.x / 2, 0, 0), doorTile);
-        }
+        if (doorSides[0] && wallSides[0]) walls.SetTile(new Vector3Int(-size.x / 2, size.y, 0), doorTile); // Top
+    
+        if (doorSides[1] && wallSides[1]) walls.SetTile(new Vector3Int(-size.x / 2, 0, 0), doorTile); // Bottom
+        
         if (doorSides[2]) // Left
         {
+
             if (wallSides[2])
             {
                 walls.SetTile(new Vector3Int(-size.x, size.y / 2, 0), doorSideTile);
                 walls.SetTile(new Vector3Int(-size.x, size.y / 2 + 1, 0), wallEndTile);
             } else
             {
-                walls.SetTile(new Vector3Int(-size.x, size.y, 0), neighbours[2].wallSides[0] ? wallTile : wallEndTile); //TL
+                walls.SetTile(new Vector3Int(-size.x, size.y, 0), wallEndTile); //TL
             }
         }
         if (doorSides[3]) // Right
@@ -72,7 +71,7 @@ public class GenerateRoom : MonoBehaviour
                 walls.SetTile(new Vector3Int(0, size.y / 2 + 1, 0), wallEndTile);
             } else
             {
-                walls.SetTile(new Vector3Int(0, size.y, 0), neighbours[3].wallSides[0] ? wallTile : wallEndTile); // TR
+                walls.SetTile(new Vector3Int(0, size.y, 0), wallEndTile); // TR
             }
         } 
 

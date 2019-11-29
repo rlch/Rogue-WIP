@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 195997af217254a8194d3c891506152f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  testTile: {fileID: 11400000, guid: 0539c577907634bd6b9ecb6599d6cf89, type: 2}
   groundTile: {fileID: 11400000, guid: 6b6df3a27fe6444fcbdb9ca42f0edee2, type: 2}
   wallTile: {fileID: 11400000, guid: 2008835e3a7e64dc3bd83bbc30748993, type: 2}
   doorTile: {fileID: 11400000, guid: 8bc8f2a2c39844d37a85f7cefe8e8a1d, type: 2}
@@ -65,6 +66,9 @@ MonoBehaviour:
   wallEndTile: {fileID: 11400000, guid: dedae15befe034baca8c6ce8e2c0bb69, type: 2}
   size: {x: 7, y: 7}
   doorSides: 
+  wallSides: 
+  neighbours: []
+  roomType: 0
 --- !u!1 &4358992872795664740
 GameObject:
   m_ObjectHideFlags: 0

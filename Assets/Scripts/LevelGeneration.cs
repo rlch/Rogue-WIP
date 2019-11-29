@@ -78,8 +78,7 @@ public class LevelGeneration : MonoBehaviour
                     doorSides[2] ? roomGens[new Vector2Int(position.x - 1, position.y)] : null,
                     doorSides[3] ? roomGens[new Vector2Int(position.x + 1, position.y)] : null,
             };
-
-            float wallSideProb = (float)(doorSides.Sum(Convert.ToDecimal) / 4);
+            float wallSideProb = Mathf.Lerp(0.2f, 0.8f, (float)(doorSides.Sum(Convert.ToDecimal) / 4));
 
             // If there is no door, we always want a wall.
             List<bool> newWallSides = new List<bool>
@@ -121,7 +120,7 @@ public class LevelGeneration : MonoBehaviour
 
             if (findSingleNeighbour)
             {
-                for (int i = 0; i < 100; i++)
+                for (int i = 0; i < 30; i++)
                 {
                     position = takenPositions[random.Next(takenPositions.Count)];
                     Debug.Log($"Finding single neighbour: index {i.ToString()}");
